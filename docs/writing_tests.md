@@ -44,6 +44,7 @@ And add them to the appropriate fixture folder in `./cypress/fixtures`. Alternat
 
 To generate data that does not change, you can use the generate data script in `scripts/generate_data` to create consistent custom data for your tests.
 
+
 #### Generating data with script
 
 You can use the genertae data script to generate consistent data for your tests. You can add your custom document generation function to generate any shape of data that you need. To use the script, run
@@ -53,8 +54,6 @@ npm run generate:test-data -- vis_builder "cypress/fixtures/dashboard/opensearch
 ```
 
 Here `vis_builder` is the name of the index. To see all options provided, run `npm run generate:test-data -- --help`
-
-To create a custom data model, refer `scripts/generate_data/create_vis_builder_data.js`
 
 ### Indexing data
 
@@ -68,7 +67,7 @@ But to upload data to test various scenarios and generate saved object test fixt
 
 #### Upload
 
-To upload your data and consume it within Dashboards, you can use the bulk api in your terminal (src: https://opensearch.org/docs/latest/opensearch/index-data/#introduction-to-indexing). 
+To upload your data and consume it within Dashboards, you can use the bulk api in your terminal (src: https://opensearch.org/docs/latest/opensearch/index-data/#introduction-to-indexing).
 If you do not care about the mapping for your test data, just upload the test data. This will automatically map the data and create the index pattern.
 
 ```sh
@@ -85,7 +84,7 @@ If you want specific datatypes for your index fields, you can manually create th
 
 This involves you using the Dashboards dev tools to make our lives easier while creating the data
 
-First create index with desired mapping in dev tools(Only map the fields you want to override the default mapping for. This must be done before uploading the data). e.g. 
+First create index with desired mapping in dev tools(Only map the fields you want to override the default mapping for. This must be done before uploading the data). e.g.
 ```sh
 PUT vis-builder
 {
@@ -142,7 +141,7 @@ Data in OpenSearch Dashboards is primarily persisted using saved objects. To ens
 
 First index the data that you need to create the appropriate saved objects for. This is optional if your saved objects dont rely on index data.
 
-Then create the saved objects in your test instance and export them from the saved object manager under `Stack Management > Saved Objects`. 
+Then create the saved objects in your test instance and export them from the saved object manager under `Stack Management > Saved Objects`.
 
 > Note: Remember to uncheck the "Include related objects" flag if you do not wish to export the saved objects that it references (Checked by default).
 

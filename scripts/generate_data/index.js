@@ -7,10 +7,12 @@ const { program, InvalidArgumentError } = require('commander');
 const { createWriteStream } = require('fs');
 const { join } = require('path');
 const { BasicDocumentGenerator } = require('./basic_generator');
+const { TimeSeriesDocumentGenerator } = require('./time_series_generator');
 
 const DEFAULT_PATH = './cypress/fixtures/dashboard/opensearch_dashboards/';
 const DOCUMENT_GENERATORS = {
   basic: BasicDocumentGenerator,
+  timeline: TimeSeriesDocumentGenerator,
 };
 
 const defaultGenerator = Object.keys(DOCUMENT_GENERATORS)[0];
@@ -65,6 +67,7 @@ program
         );
         writer.write(JSON.stringify(generator.createDoc(index)) + '\r\n');
       });
+      writer.write('\n'); // Add an extra newline here
       // the finish event is emitted when all data has been flushed from the stream
       writer.on('finish', () => {
         console.log(`Created ${docCount} fake documents`);
